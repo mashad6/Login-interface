@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -23,18 +23,21 @@ const {width:WIDTH}= Dimensions.get('window')
 
 const App = () => {
  
-  state={
-    showPass:true,
-    press:false
-  }
-
+  // state={
+  //   hidePass:true,
+  //   press:false
+  // }
+  const [hidePass,sethidePass] = useState(true)
+  const [press,setpress] = useState(false)
+  
   showPassbtn=()=>{
-    if (this.state.press == false){
-      this.setState({showPass:false,press:true})
+    if (press == false){
+      sethidePass(false),
+      setpress(true)
     }
     else {
-      this.setState({showPass:true,press:false})
-
+      sethidePass(true),
+      setpress(false)
     }
   }
 
@@ -70,14 +73,14 @@ const App = () => {
         <TextInput
         style={styles.Input}
         placeholder={'Password'}
-        secureTextEntry={this.state.showPass}
+        secureTextEntry={hidePass}
         placeholderTextColor={'rgba(255,255,0.7)'}
         underlineColorAndroid='transparent'
         />
       
         <TouchableOpacity style={styles.eyebtn} onPress={()=>showPassbtn()} >
           <Icon
-            name={this.state.press ==false ? 'ios-eye-outline':'ios-eye-off-outline'}
+            name={press == false ? 'ios-eye-outline':'ios-eye-off-outline'}
             size={26}
             color={'rgba(0,0,0,0.3)'}
           />
